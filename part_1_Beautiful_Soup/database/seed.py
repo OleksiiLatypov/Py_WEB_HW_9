@@ -23,10 +23,10 @@ def fill_data_authors(data):
 
 def fill_data_quotes(data):
     Quotes.drop_collection()
-    quote = Quotes()
     for el in data:
+        quote = Quotes()
         quote.tags = el['tags']
-        quote.author = Authors.objects(fullname=el["author"])[0].id
+        quote.author = Authors.objects(fullname=el['author'])[0].id
         quote.quote = el['quote']
         quote.save()
 
@@ -34,7 +34,6 @@ def fill_data_quotes(data):
 if __name__ == '__main__':
     data_authors = read_data('authors.json')
     data_for_quotes = read_data('quotes.json')
-    print(data_for_quotes)
     fill_data_authors(data=data_authors)
     fill_data_quotes(data_for_quotes)
 
